@@ -1,0 +1,60 @@
+{% extends "layouts/customer_base.html" %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-end align-items-center mx-2 my-1">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+            {% if message %}
+                {% if is_sent %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="fa fa-check-circle me-2"></i>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% else %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="fa fa-warning me-2"></i>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-6">
+                <h1>Reach us</h1>
+                <form action="{% url 'customer:send-message' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-6 mt-2">
+                            <label for="first-name" class="form-label">First name<span class="text-custom-secondary">*</span></label>
+                            <input id="first-name" name="first-name" class="form-control" placeholder="Eg: John" required>
+                        </div>
+                        <div class="col-6 mt-2">
+                            <label for="last-name" class="form-label">Last name<span class="text-custom-secondary">*</span></label>
+                            <input id="last-name" name="last-name" class="form-control" placeholder="Eg: Zawadi" required>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label for="email" class="form-label">Email<span class="text-custom-secondary">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="eg: zawadi23@gmail.com" required>
+                            <p class="form-text">Ensure your email has '@'</p>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label for="phone-number" class="form-label">Phone Number<span class="text-custom-secondary">*</span></label>
+                            <input type="phone" id="phone-number" name="phone-number" class="form-control" placeholder="07XXXXXXXX" required>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <label for="message" class="form-label">Your message<span class="text-custom-secondary">*</span></label>
+                            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <button type="submit" class="btn-custom-secondary d-block w-100"><span class="me-2">Send</span><i class="fa fa-send"></i></button>
+                        </div>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>    
+{% endblock %}

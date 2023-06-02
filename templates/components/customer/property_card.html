@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="card rounded-card property-card-border bg-secondary-transparent h-100">
+    <div class="card-body p-2">
+    <div class="row justify-content-center align-items-stretch">
+        <div class="col-6">
+        <img
+            src="{{ property.image_url }}"
+            class="img-fluid property-img w-100 h-100 rounded-card"
+            alt="property image"
+        />
+        </div>
+        <div class="col-6">
+        <p class="title-font">{{ property.name }}</p>
+        <a href="#" class="card-link text-light">Learn more</a>
+        </div>
+    </div>
+    </div>
+</div>

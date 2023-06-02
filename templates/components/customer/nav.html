@@ -1,0 +1,65 @@
+{% load static %}
+<!-- <h1>{{ request.path }}</h1> -->
+{% url 'customer:houses'  as houses_url %}
+{% url 'customer:properties' as properties_url %}
+{% url 'customer:contact' as contact_url %}
+
+<nav>
+    <div class="row align-items-center">
+        <!-- Logo section -->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'customer:index' %}" class="logo">
+                    <img src="{% static 'logos/thayu.png' %}" width="80px" height="90px" alt="Thayu Logo">
+                </a>
+            </div>
+        </div>
+        <!-- Navigation section -->
+        <div class="col-lg-6 col-md-6 col-sm-9">
+            <div class="d-flex justify-content-center align-items-center">
+                <ul>
+                    <li>
+                        <a href="{% url 'customer:index' %}" class="active">Home</a>
+                    </li>
+                    <li>
+                        <a 
+                            href="{% url 'customer:houses' %}" 
+                            {% if request.path == houses_url %}
+                                class="active"
+                            {% endif %}
+                        >
+                            Type of houses
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            href="{% url 'customer:properties' %}"
+                            {% if request.path == properties_url %}
+                                class="active"
+                            {% endif %}
+                        >
+                            Properties
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            href="{{ contact_url }}"
+                            {% if request.path == contact_url %}
+                                class="active"
+                            {% endif %}
+                        >
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Signup button section -->
+        <div class="col-3 d-none d-md-block d-lg-block">
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="#sign_up" class="btn-custom-secondary">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</nav>

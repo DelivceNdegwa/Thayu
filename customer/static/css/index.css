@@ -1,0 +1,25 @@
+.banner-heading{
+    font-weight: var(--heading-weight);
+    font-size: 5em;
+    font-family: var(--variant-font);
+}
+
+.banner-image{
+    height: 55vh;
+    border-radius:200px;
+}
+
+.search-form{
+    border-radius: 10px !important;
+    margin-top: -43px;
+}
+
+.body-content{
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=425&q=80);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    min-height: 60vh;
+}
