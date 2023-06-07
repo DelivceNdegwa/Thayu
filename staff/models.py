@@ -25,6 +25,16 @@ class Location(models.Model):
     )
     county=models.IntegerField(choices=COUNTY_CHOICES)
     name=models.CharField(max_length=100)
+
+
+class Customer(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    national_id_front = models.ImageField(upload_to='media/id_front')
+    national_id_back = models.ImageField(upload_to='media/id_back')
+    phone = models.IntegerField()
+    email = models.EmailField()
+    profile_img = models.ImageField(upload_to='media/profile_photos')
     
 
 class House(models.Model):
@@ -36,7 +46,7 @@ class House(models.Model):
     )
     
     name=models.CharField(max_length=100)
-    price=models.DecimalField()
+    price=models.DecimalField(decimal_places=2, max_digits=15)
     location=models.ForeignKey(Location, on_delete=models.PROTECT)
     image = models.ImageField(upload_to='media/houses')
     house_type = models.ForeignKey(HouseType, on_delete=models.PROTECT)
