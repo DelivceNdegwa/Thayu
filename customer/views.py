@@ -49,7 +49,6 @@ def contact(request):
 
 def send_message(request):
     message = ""
-
     if request.method == 'POST':
         message_details_dict = request.POST
         print(f"FIRST NAME= {message_details_dict.get('first-name')}")
