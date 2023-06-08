@@ -4,6 +4,12 @@ from django.db import models
 class Amenities(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='amenities', null=True, blank=True)
+    
+    class Meta:
+        verbose_name_plural="Amenities"
+    
+    def __str__(self):
+        return self.name
 
 class HouseType(models.Model):
     RENTAL=1
@@ -17,6 +23,9 @@ class HouseType(models.Model):
     name= models.CharField(max_length=100)
     image=models.ImageField(upload_to='house_types')
     choices = models.IntegerField(choices=TYPE_CHOICES)
+    
+    def __str__(self):
+        return self.name
     
 
 class Location(models.Model):
@@ -36,6 +45,9 @@ class Customer(models.Model):
     email = models.EmailField()
     profile_img = models.ImageField(upload_to='profile_photos')
     
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+    
 
 class House(models.Model):
     AVAILABLE = 1
@@ -53,6 +65,15 @@ class House(models.Model):
     number_of_rooms=models.IntegerField()
     status=models.IntegerField(choices=STATUS_CHOICES)
     
+    def __str__(self):
+        return self.name
+    
 class HouseAmenity(models.Model):
     house=models.ForeignKey(House, on_delete=models.CASCADE)
     amenity = models.ForeignKey(Amenities, null=True, blank=True, on_delete=models.SET_NULL)
+    
+    class Meta:
+        verbose_name_plural='House Amenities'
+    
+    def __str__(self):
+        return self.house.name
