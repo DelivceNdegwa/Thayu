@@ -5,10 +5,9 @@ from customer.views import *
 
 class TestUrl(SimpleTestCase):
     def test_index_url_is_resolved(self):
-        url = reverse("customer:index")
-        print(f" RESOLVE RESULTS:::::: {resolve(url).func}")
+        url = reverse("customer:index")\
     
-        self.assertEqual(resolve(url).func, houses)
+        self.assertEqual(resolve(url).func, index)
         
     def test_houses_url_is_resolved(self):
         url = reverse("customer:houses")
