@@ -77,3 +77,13 @@ class HouseAmenity(models.Model):
     
     def __str__(self):
         return self.house.name
+    
+
+class HouseRating(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    house = models.ForeignKey(House, on_delete=models.CASCADE)
+    rating = models.DecimalField(decimal_places=1, max_digits=3)
+    comment = models.TextField()
+    
+    def __str__(self):
+        return self.house.name
