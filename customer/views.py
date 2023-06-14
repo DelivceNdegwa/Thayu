@@ -1,45 +1,25 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from staff.models import *
 
 # Create your views here.
 def load_property():
-    properties = [
-        {
-            "name": "Tokas PentHouse",
-            "image_url": "https://images.unsplash.com/photo-1595243643203-06ba168495ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80"
-        },
-        {
-            "name": "Muthungu TreeHouse",
-            "image_url": "https://images.unsplash.com/photo-1550355191-aa8a80b41353?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"
-        },
-        {
-            "name": "Amani Cottage",
-            "image_url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-        },
-        {
-            "name": "Amani Cottage 2",
-            "image_url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80"
-        },
-    ]
+    properties = House.objects.all().order_by('-id')
     
     return properties
 
 def load_locations():
-    locations = ['Kenya','Tanzania', 'Ethopia', 'Uganda']
+    locations = Location.objects.all()
     return locations
 
 def index(request):
-    
+    latest_properties = load_property()
     context = {
-        "properties": load_property(),
+        "properties": latest_properties[:5],
         "locations": load_locations()
     }
     
     return render(request, "customer/index.html", context)
-
-
-def houses(request):
-    return render(request, "customer/house.html")
 
 def properties(request):
     return render(request, "customer/property.html")
@@ -93,3 +73,31 @@ def send_email(firstname, lastname, phonenumber, sender_email, body):
         print("Email was not sent")
         
     return sent_successfully
+
+def property_details(request, property_id):
+    property = House.objects.get(id=property_id)
+    
+    context = {
+        "property": property
+    }
+    
+    return render(request, "customer/property_details.html", context)
+
+def house_types(request):
+    house_type_list = HouseType.objects.all()
+    
+    context = {
+        "house_types":house_type_list
+    }
+    
+    return render(request, "customer/house.html", context)
+
+def houses_in_category(request, category_id):
+    houses = House.objects.filter(house_type__id=category_id).order_by('-id')
+    
+    context = {
+        "properties": houses
+    }
+    
+    return render(request, "customer/houses_in_category.html", context)
+
