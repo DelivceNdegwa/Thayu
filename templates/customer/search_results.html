@@ -1,0 +1,10 @@
+{% extends 'layouts/customer_base.html' %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% for property in search_results %}
+        {% include 'components/customer/property_card.html' %}
+    {% endfor %}
+{% endblock %}

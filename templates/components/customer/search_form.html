@@ -1,0 +1,43 @@
+<form action="#" class="form-group bg-light p-3 rounded shadow search-form">
+    <div class="row align-items-center">
+      <div class="col-3">
+        <select class="form-select border-0" aria-label="location">
+          <option selected>Location</option>
+          
+          {% for location in locations %}
+            <option value="{{ location.id }}">{{ location.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="col-3">
+        <select
+          class="form-select bg-light"
+          aria-label="Default select example"
+        >
+          <option selected>City</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+
+      <div class="col-3">
+        <select
+          class="form-select bg-light"
+          aria-label="Default select example"
+        >
+          <option selected>Budget</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+
+      <div class="col-3 text-center">
+        <button type="submit" class="btn-custom-secondary-variant shadow-sm">
+          <i class="fa fa-search"></i><span class="d-none d-lg-block">Search</span>
+        </button>
+      </div>
+    </div>
+  </form>
