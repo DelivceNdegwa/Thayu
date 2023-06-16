@@ -1,10 +1,16 @@
 {% extends 'layouts/customer_base.html' %}
 {% load static %}
 
-{% block title %}{% endblock %}
+{% block title %}Search results{% endblock %}
 
 {% block content %}
-    {% for property in search_results %}
-        {% include 'components/customer/property_card.html' %}
-    {% endfor %}
+    <h1 class="my-3">Search Results</h1>
+    <div class="row">
+        {% for property in search_results %}
+            <div class="col-sm-12 col-md-4 lg-3">
+                {% include 'components/customer/property_card.html' %}
+            </div>
+        {% endfor %}
+    </div>
+    
 {% endblock %}

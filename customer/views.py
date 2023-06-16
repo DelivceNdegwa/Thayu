@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from staff.models import *
+from .utils import HOUSE_PRICE_RANGE
 
 # Create your views here.
 def load_property():
@@ -12,17 +13,47 @@ def load_locations():
     locations = Location.objects.all()
     return locations
 
+def load_house_types():
+    house_types = HouseType.objects.all()
+    return house_types
+
+def houses_search(price_range, location_id, house_type_id):
+    if price_range == 6:
+        return House.objects.filter(
+            price__gt=100000,
+            location__id=location_id,
+            house_type__id=house_type_id
+        )
+    # i not in the range of 0 to 6, range wont count the last number(7)
+    if price_range not in range(7):
+        return 
+
+    starting_price = HOUSE_PRICE_RANGE[price_range][0]
+    end_price = HOUSE_PRICE_RANGE[price_range][1]
+    
+    return House.objects.filter(
+        price__gte=starting_price, 
+        price__lte=end_price,
+        location__id=location_id,
+        house_type__id=house_type_id
+    )
+    
+
 def index(request):
     latest_properties = load_property()
     context = {
         "properties": latest_properties[:5],
-        "locations": load_locations()
+        "locations": load_locations(),
+        "house_types": load_house_types()
     }
     
     return render(request, "customer/index.html", context)
 
 def properties(request):
-    return render(request, "customer/property.html")
+    context = {
+        "properties": House.objects.all()
+    }
+    return render(request, "customer/property.html", context)
 
 def contact(request):
     return render(request, "customer/contact.html")
@@ -101,3 +132,20 @@ def houses_in_category(request, category_id):
     
     return render(request, "customer/houses_in_category.html", context)
 
+def search_results(request):
+    search_value = request.GET
+    location_id = search_value.get("location")
+    house_type_id = search_value.get("house-type")
+    house_range = int(search_value.get("budget"))
+    
+    search_query_results = houses_search(
+                                        house_range, 
+                                        location_id, 
+                                        house_type_id
+                                    )
+    
+    context = {
+        "search_results": search_query_results
+    }
+    
+    return render(request, "customer/search_results.html", context)
