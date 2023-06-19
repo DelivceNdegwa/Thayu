@@ -42,7 +42,7 @@ def houses_search(price_range, location_id, house_type_id):
 def index(request):
     latest_properties = load_property()
     context = {
-        "properties": latest_properties[:5],
+        "properties": latest_properties,
         "locations": load_locations(),
         "house_types": load_house_types()
     }
