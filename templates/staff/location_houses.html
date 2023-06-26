@@ -1,0 +1,37 @@
+{% extends "layouts/staff_base.html" %}
+{% load static %}
+
+{% block title %}Houses in {{ location.name }}{% endblock %}
+
+{% block content %}
+    <h1>Houses in {{ location.name }}</h1>
+    <table class="table table-dark table-hover mt-3">
+        <thead>
+            <th>ID</th> 
+            <th>Name</th>
+            <th>Price</th>
+            <th>No Of Rooms</th>
+            <th>House Type</th>
+            <th>Status</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+           {% for house in location.house_set.all %}
+                <tr>
+                    <td>{{ house.id }}</td>
+                    <td>{{ house.name }}</td>
+                    <td>{{ house.price }}</td>
+                    <td>{{ house.number_of_rooms }}</td>
+                    <td>{{ house.house_type.get_choices_display }}  {{ house.house_type.name }}</td>
+                    <td>{{ house.get_status_dislay }}</td>
+                    <td>
+                        <!--TODO: Add  button to take us to a house details page you will 
+                        create, this will have the details of the house(different from the 
+                        property_details view)-->
+                        <a href="{% url 'staff:house' house.location.id house.id %}" class="btn-custom-secondary">View</a>
+                    </td>
+                </tr>
+           {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

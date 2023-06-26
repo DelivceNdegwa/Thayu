@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+
+:root{
+    --primary-color: rgb(23, 23, 23);
+    --secondary-color: #FE4F14;
+    --secondary-color-brighter:#E26137;
+    --primary-variant: #EBEBEB;
+    --secondary-variant: rgb(0, 20, 44);
+    --secondary-variant-brighter: rgb(11, 35, 65);
+
+    --default-font: 'Ubuntu', sans-serif;
+    --variant-font: 'PT Sans', sans-serif;
+    
+    --heading-weight: 900;
+    --title-weight:700;
+    --smaller-title-weight:500;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: var(--default-font);
+    border-style: none;
+}
+
+.sidebar{
+    position:fixed;
+    z-index: 5;
+    height:100vh;
+    width: 25vw !important;
+    left:0;
+    top:0;
+    background-color: var(--secondary-color);
+}
+
+.dashboard-content{
+    position:fixed;
+    right: 0;
+    top:0;
+    left: 25vw;
+}

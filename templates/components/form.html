@@ -1,0 +1,12 @@
+{% load static %}
+{% load widget_tweaks %}
+
+{% csrf_token %}
+{% for input in form %}
+    <div class="form-group">
+        <label class="font-weight-bold text-light">{{ input.label }} {% if field.required %}<span class="text-danger">*</span>{% endif %}</label>
+        <p>{{ input|add_class:'form-control bg-dark text-light' }}</p>
+        <small class="text-danger">{{ input.errors }}</small>
+    </div>
+{% endfor %}
+

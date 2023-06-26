@@ -31,9 +31,28 @@ class HouseType(models.Model):
 class Location(models.Model):
     COUNTY_CHOICES =(
         (1, "Mombasa"),
+        (2, "Kwale"),
+        (3, "Kilifi"),
+        (4, "Tana River"),
+        (11, "Isiolo"),
+        (12, "Meru"),
+        (14, "Embu"),
+        (16, "Machakos"),
+        (19, "Nyeri"),
+        (20, "Kirinyaga"),
+        (22, "Kiambu"),
+        (32, "Nakuru"),
+        (36, "Bomet"),
+        (37, "Kakamega"),
+        (42, "Kisumu"),
+        (47, "Nairobi")
+    
     )
     county=models.IntegerField(choices=COUNTY_CHOICES)
     name=models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
 
 class Customer(models.Model):

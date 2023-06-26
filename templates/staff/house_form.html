@@ -1,0 +1,15 @@
+{% extends 'layouts/staff_base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}House Form{% endblock %}
+
+{% block content %}
+    <div class="container m-3">
+        <h1 class="mt-3">Create new house</h1>
+        <form action="{% url 'staff:houses' %}" method="POST" class="mt-3" enctype="multipart/form-data">
+            {% include 'components/form.html' %}
+            <button type="submit" class="btn-custom-secondary">Create</button>
+        </form>
+    </div>
+
+{% endblock %}
