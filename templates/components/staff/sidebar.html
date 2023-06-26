@@ -1,5 +1,38 @@
 {% load static %}
+{% url 'staff:dashboard' as dashboard_url %}
+{% url 'staff:locations' as locations_url %}
+{% url 'staff:houses' as houses_url %}
 
 <div class="sidebar">
-
+    <ul>
+        <li>
+            <a 
+                href="{{ dashboard_url }}"
+                {% if request.path == dashboard_url %}class="active"{% endif %}
+            >Dashboard</a>
+        </li>
+        <li>
+            <a 
+                href="#categories"
+            >Categories</a>
+        </li>
+        <li>
+            <a 
+                href="{{ houses_url }}"
+                {% if request.path == houses_url %}class="active"{% endif %}
+            >Houses</a>
+        </li>
+        <li>
+            <a 
+                href="{{ locations_url }}"
+                {% if request.path == locations_url %}class="active"{% endif %}
+            >Locations</a>
+        </li>
+        <li>
+            <a href="#messages">Messages</a>
+        </li>
+        <li>
+            <a href="#account">Account</a>
+        </li>
+    </ul>
 </div>
