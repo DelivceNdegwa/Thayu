@@ -100,6 +100,15 @@ def send_email(firstname, lastname, phonenumber, sender_email, body):
             fail_silently=False
         )
         sent_successfully = True
+        
+        Message.objects.create(
+            first_name=firstname,
+            last_name = lastname,
+            email = sender_email,
+            phone_number= phonenumber,
+            message = body
+        )
+        
     except Exception as e:
         print("Email was not sent")
         
