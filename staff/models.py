@@ -61,7 +61,7 @@ class Customer(models.Model):
     national_id_front = models.ImageField(upload_to='id_front')
     national_id_back = models.ImageField(upload_to='id_back')
     phone = models.IntegerField()
-    email = models.EmailField()
+    email = models.EmailField() 
     profile_img = models.ImageField(upload_to='profile_photos')
     
     def __str__(self):

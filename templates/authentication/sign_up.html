@@ -1,0 +1,46 @@
+{% extends "layouts/customer_base.html" %}
+
+<div class="container mt-3">
+    <h1 class="my-3">Sign Up</h1>
+    <form action="#" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6 mt-2">
+                <label for="first_name" class="form-label">First name<span class="text-custom-secondary">*</span></label>
+                <input id="first_name" name="first_name" class="form-control" placeholder="Eg: John" required>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="last_name" class="form-label">Last name<span class="text-custom-secondary">*</span></label>
+                <input id="last_name" name="last_name" class="form-control" placeholder="Eg: Zawadi" required>
+            </div>
+            <div class="col-12 mt-2">
+                <label for="email" class="form-label">Email<span class="text-custom-secondary">*</span></label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="eg: zawadi23@gmail.com" required>
+                <p class="form-text">Ensure your email has '@'</p>
+            </div>
+            <div class="col-12 mt-2">
+                <label for="phone" class="form-label">Phone Number<span class="text-custom-secondary">*</span></label>
+                <input type="phone" id="phone" name="phone" class="form-control" placeholder="07XXXXXXXX" required>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="national_id_front" class="form-label">National ID Front<span class="text-custom-secondary">*</span></label>
+                <input type="file" id="national_id_front" name="national_id_front" class="form-control" required>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="national_id_back" class="form-label">Phone Number<span class="text-custom-secondary">*</span></label>
+                <input type="file" id="national_id_back" name="national_id_back" class="form-control" required>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="password" class="form-label">Password<span class="text-custom-secondary">*</span></label>
+                <input id="password" name="password" class="form-control" placeholder="Eg: John" required>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="password1" class="form-label">Confirm password<span class="text-custom-secondary">*</span></label>
+                <input id="password1" name="password1" class="form-control" placeholder="Eg: John" required>
+            </div>
+            <div class="col-12 mt-3">
+                <button type="submit" class="btn-custom-secondary d-block w-100"><span class="me-2">Sign Up</span><i class="fa fa-send"></i></button>
+            </div>
+        </div>  
+    </form>
+</div>
