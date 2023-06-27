@@ -66,3 +66,12 @@ def house(request, location_id, house_id):
     }
     
     return render(request, "staff/house.html", context)
+
+def messages(request):
+    all_messages = Message.objects.filter(is_read=False)
+    
+    context = {
+        "messages": all_messages
+    }
+    
+    return render(request, "staff/messages.html", context)

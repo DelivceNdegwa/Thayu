@@ -2,6 +2,7 @@
 {% url 'staff:dashboard' as dashboard_url %}
 {% url 'staff:locations' as locations_url %}
 {% url 'staff:houses' as houses_url %}
+{% url 'staff:messages' as messages_url %}
 
 <div class="sidebar">
     <ul>
@@ -29,7 +30,10 @@
             >Locations</a>
         </li>
         <li>
-            <a href="#messages">Messages</a>
+            <a 
+                href="{{ messages_url }}"
+                {% if request.path == messages_url %}class="active"{% endif %}
+            >Messages</a>
         </li>
         <li>
             <a href="#account">Account</a>

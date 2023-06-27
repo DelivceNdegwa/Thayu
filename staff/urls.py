@@ -8,4 +8,5 @@ urlpatterns = [
     path('locations/', locations, name="locations"),
     path('locations/houses/<location_id>', location_houses, name="location-houses"),
     path('locations/houses/<location_id>/<house_id>', house, name="house"),
+    path('messages/', messages, name="messages")
 ]
